@@ -1,0 +1,20 @@
+[
+	{
+		"Id" : 1,
+		"Name" : "Alan",
+		"StoreFile" : "/Users/eastmad/Projects/TheNewStack/AlansTweets.json",
+		"Permission" : true
+	},
+	{
+		"Id" : 2,
+		"Name" : "Beth",
+		"StoreFile" : "/Users/eastmad/Projects/TheNewStack/BethsTweets.json",
+		"Permission" : true
+	},
+	{
+		"Id" : 3,
+		"Name" : "Cath",
+		"StoreFile" : "/Users/eastmad/Projects/TheNewStack/CathsTweets.json",
+		"Permission" : true
+	}
+]
