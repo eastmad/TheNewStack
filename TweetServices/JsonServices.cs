@@ -9,7 +9,8 @@ namespace BackEnd
 {
     public class JsonServices
     {
-        const string IDENTITYFILENAME = "/Users/eastmad/Projects/TheNewStack/identities.json";
+        const string BASEDIRECTORY = "/Users/eastmad/Projects/TheNewStack/";
+        const string IDENTITYFILENAME = "identities.json";
 
         public static void WriteTweetsToFile(List<Tweet> tweets, Identity id)
         {
@@ -20,7 +21,7 @@ namespace BackEnd
         {    
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize<List<T>>(list, options);
-            File.WriteAllText(filename, jsonString);
+            File.WriteAllText(Path.Combine(BASEDIRECTORY, filename), jsonString);
         }
 
         public static List<Tweet> ReadTweetsFromFile(Identity id)
@@ -36,6 +37,8 @@ namespace BackEnd
         private static List<T> ReadFromFile<T>(string filename)
         {
             List<T> list = new List<T>();
+
+            filename = Path.Combine(BASEDIRECTORY, filename);
 
             if (File.Exists(filename))
             {

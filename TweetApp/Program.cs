@@ -13,11 +13,11 @@ namespace TweetApp
             short identityId = 0;
             long replyto = 0L;
 
-            Console.WriteLine("Tweeting as (ident): ");
+            Console.WriteLine("Who are you tweeting as (identity number)? ");
             identityId = Convert.ToInt16(Console.ReadLine());
            
             Identity ident = JsonServices.ReadIdentitesFromFile().Find(id => id.Id == identityId);
-            Console.WriteLine(" (Tweeting as " + ident.Name + ")");
+            Console.WriteLine("Now Tweeting as " + ident.Name);
 
             Console.WriteLine("Reply-to (id or 0):");
             replyto = Convert.ToInt64(Console.ReadLine());

@@ -2,19 +2,19 @@
 	{
 		"Id" : 1,
 		"Name" : "Alan",
-		"StoreFile" : "/Users/eastmad/Projects/TheNewStack/AlansTweets.json",
+		"StoreFile" : "AlansTweets.json",
 		"Permission" : true
 	},
 	{
 		"Id" : 2,
 		"Name" : "Beth",
-		"StoreFile" : "/Users/eastmad/Projects/TheNewStack/BethsTweets.json",
+		"StoreFile" : "BethsTweets.json",
 		"Permission" : true
 	},
 	{
 		"Id" : 3,
 		"Name" : "Cath",
-		"StoreFile" : "/Users/eastmad/Projects/TheNewStack/CathsTweets.json",
+		"StoreFile" : "CathsTweets.json",
 		"Permission" : true
 	}
 ]

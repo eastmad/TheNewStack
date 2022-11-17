@@ -32,7 +32,7 @@ namespace DisplayTweets
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("/nTweets:/n");
+            Console.WriteLine("\nTweets:\n");
             //Load Tweets from identities
             List<Identity> idents = JsonServices.ReadIdentitesFromFile();
             List<TweetFrom> totalTweets = new List<TweetFrom>();
