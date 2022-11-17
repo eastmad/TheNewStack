@@ -9,7 +9,7 @@ namespace BackEnd
 {
     public class JsonServices
     {
-        const string BASEDIRECTORY = "/Users/eastmad/Projects/TheNewStack/";
+        const string BASEDIRECTORY = "/Users/username/Projects/TheNewStack/";
         const string IDENTITYFILENAME = "identities.json";
 
         public static void WriteTweetsToFile(List<Tweet> tweets, Identity id)
