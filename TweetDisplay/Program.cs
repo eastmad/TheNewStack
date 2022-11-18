@@ -16,15 +16,15 @@ namespace DisplayTweets
             this.tweet = tweet;
         }
 
-        public int CompareTo(TweetFrom other)
+        public int CompareTo(TweetFrom? other)
         {
-            if (tweet.Time == other.tweet.Time)
+            if (tweet.Time == other?.tweet.Time)
             {
                 return 0;
             }
        
             // CompareTo() method
-            return tweet.Time.CompareTo(other.tweet.Time);
+            return tweet.Time.CompareTo(other?.tweet.Time);
         }
     }
 

@@ -9,7 +9,7 @@ namespace BackEnd
 {
     public class JsonServices
     {
-        const string BASEDIRECTORY = "/Users/username/Projects/TheNewStack/";
+        const string BASEDIRECTORY = "/Users/eastmad/Projects/TheNewStack/";
         const string IDENTITYFILENAME = "identities.json";
 
         public static void WriteTweetsToFile(List<Tweet> tweets, Identity id)
@@ -36,7 +36,7 @@ namespace BackEnd
 
         private static List<T> ReadFromFile<T>(string filename)
         {
-            List<T> list = new List<T>();
+            List<T>? list = null;
 
             filename = Path.Combine(BASEDIRECTORY, filename);
 
@@ -47,7 +47,7 @@ namespace BackEnd
             }
             else Console.WriteLine("No existing file found for " + filename);
 
-            return list;
+            return list ?? new List<T>();
         }
     }
 }
