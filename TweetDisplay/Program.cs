@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Unicode;
 using BackEnd;
 
@@ -35,29 +37,50 @@ namespace DisplayTweets
             Console.WriteLine("\nTweets:\n");
             //Load Tweets from identities
             List<Identity> idents = JsonServices.ReadIdentitesFromFile();
-            List<TweetFrom> totalTweets = new List<TweetFrom>();
+            SortedDictionary<long, TweetFrom> totalTweets = new SortedDictionary<long, TweetFrom>();
             foreach (var ident in idents)
                 if (ident.Permission)
                 {
                     List<Tweet> tweets = JsonServices.ReadTweetsFromFile(ident);
-                    tweets.ForEach(tweet => totalTweets.Add(new TweetFrom(ident.Name, tweet)));
+                    tweets.ForEach(tweet => totalTweets.Add(tweet.Time, new TweetFrom(ident.Name, tweet)));
                 }
 
-            totalTweets.Sort();
-
-            long prevtweetid = -1;
+            Tweet prevtweet = default(Tweet);
+            prevtweet.Time = -1;
             char sepchar = ':';
+            Identity mitigationIdentity = idents.First();
+            List<Tweet> mitigations = JsonServices.ReadTweetsFromFile(mitigationIdentity);
+
+            // Add mitigations before we display
+            foreach(var mit in mitigations)
+            {
+                if (!totalTweets.ContainsKey(mit.Time))
+                    totalTweets.Add(mit.Time, new TweetFrom(mitigationIdentity.Name, mit));
+
+            }
+    
+
             foreach (var tweetfrom in totalTweets)
             {
-                if (prevtweetid == tweetfrom.tweet.Replyto)
+                if (prevtweet.Time == tweetfrom.Value.tweet.Replyto)
+                {
                     sepchar = '↳';
+
+                    //Create mitigation tweet
+                    mitigations.Add(new Tweet("Tweet not available", prevtweet.Replyto, prevtweet.Time));
+                    
+                }
                 else sepchar = '-';
 
                         
-                Console.WriteLine($"{tweetfrom.tweet.DateTimeFromSeconds()} {tweetfrom.from} ({tweetfrom.tweet.Time}) {sepchar} {tweetfrom.tweet.Text} ");
+                Console.WriteLine($"{tweetfrom.Value.tweet.DateTimeFromSeconds()} {tweetfrom.Value.from} ({tweetfrom.Value.tweet.Time}) {sepchar} {tweetfrom.Value.tweet.Text} ");
 
-                prevtweetid = tweetfrom.tweet.Time;
+                prevtweet = tweetfrom.Value.tweet;
             }
+
+            //write mitigations
+            
+            JsonServices.WriteTweetsToFile(mitigations, mitigationIdentity);
         }
     }
 }

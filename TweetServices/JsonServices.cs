@@ -12,6 +12,7 @@ namespace BackEnd
         const string BASEDIRECTORY = "/Users/eastmad/Projects/TheNewStack/";
         const string IDENTITYFILENAME = "identities.json";
 
+
         public static void WriteTweetsToFile(List<Tweet> tweets, Identity id)
         {
             WriteToFile(tweets, id.StoreFile);

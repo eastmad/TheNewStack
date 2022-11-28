@@ -16,6 +16,13 @@ namespace BackEnd
             Time = DateTimeOffset.Now.ToUnixTimeSeconds();
         }
 
+        public Tweet(string text, long replyto, long time)
+        {
+            Text = text;
+            Replyto = replyto;
+            Time = time;
+        }
+
         public DateTime DateTimeFromSeconds()
         {
             DateTime unixDateTime = DateTime.UnixEpoch;
